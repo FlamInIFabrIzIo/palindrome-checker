@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Palindrome Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 2rem;
+      background-color: #f4f4f4;
+    }
+    input, button {
+      padding: 0.5rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+    }
+    #result {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Palindrome Checker</h1>
+  <!-- Input para que el usuario ingrese el texto -->
+  <input type="text" id="text-input" placeholder="Enter text here">
+  <!-- Botón para activar la comprobación -->
+  <button id="check-btn">Check</button>
+  <!-- Elemento para mostrar el resultado -->
+  <p id="result"></p>
+
+  <script>
+    // Función que determina si un texto es palíndromo.
+    // Se remueven los caracteres no alfanuméricos y se convierte a minúsculas.
+    function isPalindrome(str) {
+      // Remover todo lo que no sea letra o número y convertir a minúsculas.
+      let cleaned = str.replace(/[^A-Za-z0-9]/g, "").toLowerCase();
+      // Invertir la cadena limpia.
+      let reversed = cleaned.split("").reverse().join("");
+      // Comparar si la cadena limpia es igual a su reverso.
+      return cleaned === reversed;
+    }
+
+    // Agregar un listener al botón para procesar el texto ingresado.
+    document.getElementById("check-btn").addEventListener("click", function() {
+      // Obtener el valor del input.
+      let input = document.getElementById("text-input").value;
+      
+      // Si el input está vacío (o contiene solo espacios) mostrar alerta.
+      if (input.trim() === "") {
+        alert("Please input a value");
+        return;
+      }
+      
+      // Determinar si es palíndromo usando la función isPalindrome.
+      let resultMessage = isPalindrome(input)
+        ? input + " is a palindrome"
+        : input + " is not a palindrome";
+      
+      // Mostrar el resultado en el elemento con id "result".
+      document.getElementById("result").textContent = resultMessage;
+    });
+  </script>
+</body>
+</html>
